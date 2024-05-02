@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class Main {
+   
+    public static void encryptDecrypt(String inputString, StringBuilder outputString, int key) {
+        int len = inputString.length();
+        for (int i = 0; i < len; i++) {
+            char c = inputString.charAt(i);
+            outputString.append((char) (c ^ key));
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String plainText, encryptedText, decryptedText;
+        int key, k = 8484;
+       
+        System.out.print("Enter plain text: ");
+        plainText = scanner.nextLine();
+       
+        System.out.print("Enter key: ");
+        key = scanner.nextInt();
+       
+        if (k == key) {
+            StringBuilder sb = new StringBuilder();
+            encryptDecrypt(plainText, sb, key);
+            encryptedText = sb.toString();
+            System.out.println("Encrypted text: " + encryptedText);
+           
+            sb.setLength(0);
+            encryptDecrypt(encryptedText, sb, key);
+            decryptedText = sb.toString();
+            System.out.println("Decrypted text: " + decryptedText);
+        } else {
+            System.out.println("You entered a wrong key");
+        }
+       
+        scanner.close();
+    }
+}
